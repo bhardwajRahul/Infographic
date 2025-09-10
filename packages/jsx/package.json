@@ -1,0 +1,35 @@
+{
+  "name": "@antv/infographic-jsx",
+  "version": "0.0.1",
+  "description": "JSX runtime for AntV Infographic",
+  "keywords": [],
+  "license": "MIT",
+  "author": "Aarebecca",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./jsx-runtime": {
+      "import": "./dist/jsx-runtime.js",
+      "types": "./dist/jsx-runtime.d.ts"
+    },
+    "./jsx-dev-runtime": {
+      "import": "./dist/jsx-runtime.js",
+      "types": "./dist/jsx-runtime.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "t": "tsx ./src/test.tsx",
+    "test": "vitest",
+    "watch": "tsc -w"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.12"
+  }
+}
