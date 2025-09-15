@@ -1,6 +1,7 @@
-import { describe, it, expect } from 'vitest';
-import { nodeToElements, nodeToRenderableNodes } from '../../../src/utils/element';
-import type { JSXElement, JSXNode, RenderableNode } from '../../../src/types';
+import type { JSXElement, JSXNode, RenderableNode } from '@/types';
+import { nodeToElements, nodeToRenderableNodes } from '@/utils/element';
+import { Fragment } from '@antv/infographic-jsx';
+import { describe, expect, it } from 'vitest';
 
 describe('element utils', () => {
   describe('nodeToElements', () => {
@@ -38,10 +39,7 @@ describe('element utils', () => {
     it('should handle nested arrays', () => {
       const element1: JSXElement = { type: 'div', props: {} };
       const element2: JSXElement = { type: 'span', props: {} };
-      const nestedNodes: JSXNode = [
-        element1,
-        ['text', element2, [42, true]],
-      ];
+      const nestedNodes: JSXNode = [element1, ['text', element2, [42, true]]];
 
       const result = nodeToElements(nestedNodes);
       expect(result).toEqual([element1, element2]);
@@ -79,7 +77,7 @@ describe('element utils', () => {
     it('should collect from arrays recursively', () => {
       const element: JSXElement = { type: 'div', props: {} };
       const nodes: JSXNode = [element, 'text', 42, null, undefined, true];
-      
+
       const result = nodeToRenderableNodes(nodes);
       expect(result).toEqual([element, 'text', 42]);
     });
@@ -99,7 +97,7 @@ describe('element utils', () => {
     it('should accumulate results in the provided array', () => {
       const element: JSXElement = { type: 'div', props: {} };
       const existingResult: RenderableNode[] = ['existing'];
-      
+
       const result = nodeToRenderableNodes(element, existingResult);
       expect(result).toBe(existingResult);
       expect(result).toEqual(['existing', element]);
@@ -137,9 +135,58 @@ describe('element utils', () => {
     it('should handle very deeply nested structures', () => {
       const element: JSXElement = { type: 'div', props: {} };
       const deeplyNested: JSXNode = [[[[[element]]]]];
-      
+
       const result = nodeToRenderableNodes(deeplyNested);
       expect(result).toEqual([element]);
+    });
+
+    it('should handle fragments correctly', () => {
+      const fragmentNode: JSXElement = {
+        type: Fragment,
+        props: { children: ['text', { type: 'span', props: {} }] },
+      };
+
+      const result = nodeToRenderableNodes(fragmentNode);
+      expect(result).toEqual(['text', { type: 'span', props: {} }]);
+    });
+
+    it('should handle empty fragments', () => {
+      const fragmentNode: JSXElement = {
+        type: Fragment,
+        props: { children: null },
+      };
+
+      const result = nodeToRenderableNodes(fragmentNode);
+      expect(result).toEqual([]);
+    });
+
+    it('should handle fragments with multiple children', () => {
+      const fragmentNode: JSXElement = {
+        type: Fragment,
+        props: {
+          children: ['text', { type: 'div', props: {} }, 42, null, true],
+        },
+      };
+
+      const result = nodeToRenderableNodes(fragmentNode);
+      expect(result).toEqual(['text', { type: 'div', props: {} }, 42]);
+    });
+
+    it('should handle fragments with nested arrays', () => {
+      const fragmentNode: JSXElement = {
+        type: Fragment,
+        props: {
+          children: [
+            'start',
+            [{ type: 'div', props: {} }, null],
+            'end',
+            [42, true],
+          ],
+        },
+      };
+
+      const result = nodeToRenderableNodes(fragmentNode);
+      expect(result).toEqual(['start', { type: 'div', props: {} }, 'end', 42]);
     });
   });
 });

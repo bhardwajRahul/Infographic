@@ -6,3 +6,4 @@ export * from './escape';
 export * from './is-jsx-element';
 export * from './is-number';
 export * from './svg';
+export * from './is-fragment';

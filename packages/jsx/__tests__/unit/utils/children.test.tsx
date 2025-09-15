@@ -289,7 +289,9 @@ describe('getRenderableChildrenOf', () => {
     });
 
     it('处理函数作为 JSX 类型', () => {
-      const ComponentFunction = () => {};
+      const ComponentFunction = () => {
+        return {} as any;
+      };
       const jsxElement: JSXElement = {
         type: ComponentFunction,
         props: {
