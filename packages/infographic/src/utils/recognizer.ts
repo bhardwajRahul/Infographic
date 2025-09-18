@@ -25,26 +25,42 @@ const REGEXP = {
   title: /^title$/,
 };
 
-export const isTitle = (id: string) => REGEXP.title.test(id);
-export const isDesc = (id: string) => REGEXP.desc.test(id);
-export const isShape = (id: string) => REGEXP.shape.test(id);
-export const isIllus = (id: string) => REGEXP.illus.test(id);
-export const isShapeGroup = (id: string) => REGEXP.shapesGroup.test(id);
-export const isItemsGroup = (id: string) => REGEXP.itemsGroup.test(id);
-export const isItemElement = (id: string) => REGEXP.itemElement.test(id);
-export const isItemGroup = (id: string) => REGEXP.itemGroup.test(id);
-export const isItemIcon = (id: string) => REGEXP.itemIcon.test(id);
-export const isItemIconGroup = (id: string) => REGEXP.itemIconGroup.test(id);
-export const isItemLabel = (id: string) => REGEXP.itemLabel.test(id);
-export const isItemDesc = (id: string) => REGEXP.itemDesc.test(id);
-export const isItemValue = (id: string) => REGEXP.itemValue.test(id);
-export const isItemIllus = (id: string) => REGEXP.itemIllus.test(id);
-export const isItemShape = (id: string) => REGEXP.itemShape.test(id);
-export const isItemShapesGroup = (id: string) =>
-  REGEXP.itemShapesGroup.test(id);
-export const isItemStaticElement = (id: string) =>
-  REGEXP.itemStaticElement.test(id);
-export const isEditArea = (id: string) => REGEXP.editArea.test(id);
-export const isBtnsGroup = (id: string) => REGEXP.btnsGroup.test(id);
-export const isBtnAdd = (id: string) => REGEXP.btnAdd.test(id);
-export const isBtnRemove = (id: string) => REGEXP.btnRemove.test(id);
+const is = (element: SVGElement, regexp: RegExp) => {
+  return element.id ? regexp.test(element.id) : false;
+};
+export const isTitle = (element: SVGElement) => is(element, REGEXP.title);
+export const isDesc = (element: SVGElement) => is(element, REGEXP.desc);
+export const isShape = (element: SVGElement) => is(element, REGEXP.shape);
+export const isIllus = (element: SVGElement) => is(element, REGEXP.illus);
+export const isText = (element: SVGElement) =>
+  element instanceof SVGTextElement;
+export const isShapeGroup = (element: SVGElement) =>
+  is(element, REGEXP.shapesGroup);
+export const isItemsGroup = (element: SVGElement) =>
+  is(element, REGEXP.itemsGroup);
+export const isItemElement = (element: SVGElement) =>
+  is(element, REGEXP.itemElement);
+export const isItemGroup = (element: SVGElement) =>
+  is(element, REGEXP.itemGroup);
+export const isItemIcon = (element: SVGElement) => is(element, REGEXP.itemIcon);
+export const isItemIconGroup = (element: SVGElement) =>
+  is(element, REGEXP.itemIconGroup);
+export const isItemLabel = (element: SVGElement) =>
+  is(element, REGEXP.itemLabel);
+export const isItemDesc = (element: SVGElement) => is(element, REGEXP.itemDesc);
+export const isItemValue = (element: SVGElement) =>
+  is(element, REGEXP.itemValue);
+export const isItemIllus = (element: SVGElement) =>
+  is(element, REGEXP.itemIllus);
+export const isItemShape = (element: SVGElement) =>
+  is(element, REGEXP.itemShape);
+export const isItemShapesGroup = (element: SVGElement) =>
+  is(element, REGEXP.itemShapesGroup);
+export const isItemStaticElement = (element: SVGElement) =>
+  is(element, REGEXP.itemStaticElement);
+export const isEditArea = (element: SVGElement) => is(element, REGEXP.editArea);
+export const isBtnsGroup = (element: SVGElement) =>
+  is(element, REGEXP.btnsGroup);
+export const isBtnAdd = (element: SVGElement) => is(element, REGEXP.btnAdd);
+export const isBtnRemove = (element: SVGElement) =>
+  is(element, REGEXP.btnRemove);

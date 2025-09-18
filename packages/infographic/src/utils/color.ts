@@ -1,4 +1,4 @@
-export function hasColor(fill: string | null): boolean {
+export function hasColor(fill?: string | null): boolean {
   if (!fill) return false;
   const normalizedFill = fill.trim().toLowerCase();
   if (

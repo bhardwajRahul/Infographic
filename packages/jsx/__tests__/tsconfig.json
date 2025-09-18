@@ -5,7 +5,6 @@
     "rootDir": null,
     "noEmit": true,
     "composite": false,
-    "moduleResolution": "node",
     "paths": {
       "@antv/infographic-jsx": ["../src/index"],
       "@antv/infographic-jsx/*": ["../src/*"],

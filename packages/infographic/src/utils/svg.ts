@@ -12,7 +12,9 @@ export function createElement<T extends SVGElement = SVGElement>(
   return element;
 }
 
-export function parseSVG<T extends SVGElement = SVGSVGElement>(svg: string): T {
+export function parseSVG<T extends SVGElement = SVGSVGElement>(
+  svg: string,
+): T | null {
   const parser = new DOMParser();
   const doc = parser.parseFromString(svg, 'image/svg+xml');
 
@@ -82,4 +84,21 @@ export function getOrCreateDefs(
   if (defsId) newDefs.id = defsId;
   svg.prepend(newDefs);
   return newDefs;
+}
+
+export function getSizeBaseVal(svg: SVGSVGElement): [number, number] {
+  try {
+    const width = svg.width.baseVal.value || 0;
+    const height = svg.height.baseVal.value || 0;
+    return [width, height];
+  } catch (error) {
+    const viewBox = svg.getAttribute('viewBox');
+    if (viewBox) {
+      const [x, y, width, height] = viewBox.split(' ').map(Number);
+      return [width - x, height - y];
+    }
+
+    console.error('Error getting size baseVal from SVG:', error);
+    return [0, 0];
+  }
 }

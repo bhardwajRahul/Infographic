@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": null,
+    "noEmit": true,
+    "composite": false,
+    "paths": {
+      "@antv/infographic": ["../src/index"],
+      "@@/*": ["./*"],
+      "@/*": ["../src/*"]
+    }
+  },
+  "include": ["./**/*"],
+  "exclude": ["node_modules"],
+  "references": [{ "path": ".." }]
+}
