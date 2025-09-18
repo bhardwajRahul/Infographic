@@ -1,5 +1,5 @@
 import { Palette, StylizeConfig } from '../renderer';
-import { IconAttributes, ShapeAttributes, TextAttributes } from './attrs';
+import { IconAttributes, ShapeAttributes, TextAttributes } from '../types';
 
 export type DynamicAttributes<T extends object, R extends any[] = []> = {
   [key in keyof T]?: T[key] | ((value: T[key], ...args: R) => T[key]);
