@@ -17,15 +17,12 @@ export interface TemplateOptions {
 }
 
 export interface ParsedTemplateOptions {
-  structure: WithProps<{
-    component: Structure;
-  }>;
+  structure: WithProps<Structure>;
   title: {
     component: ComponentType<any>;
-    props?: Record<string, any>;
   };
   item: WithProps<Item>;
 }
 
 type WithType<T> = T & { type: string };
-type WithProps<T> = T & { props?: Record<string, any> };
+type WithProps<T> = T & { props?: any };
