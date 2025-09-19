@@ -13,6 +13,8 @@ export function renderBackground(
     return element?.remove();
   }
 
+  svg.style.backgroundColor = background;
+
   if (element) {
     element.setAttribute('fill', background);
   } else if (svg.viewBox?.baseVal) {
