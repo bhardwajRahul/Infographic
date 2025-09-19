@@ -38,14 +38,10 @@ export function Text(props: TextProps): JSXElement {
   } = props;
 
   const dataAttrs = Object.entries({
-    ...(alignHorizontal !== 'left' && {
-      'data-align-horizontal': alignHorizontal,
-    }),
-    ...(alignVertical !== 'top' && { 'data-align-vertical': alignVertical }),
-    ...(lineHeight !== undefined && { 'data-line-height': lineHeight }),
+    ...(lineHeight !== undefined && { 'line-height': lineHeight }),
     ...(wordWrap !== undefined && { 'data-word-wrap': wordWrap }),
-    ...(width !== undefined && { 'data-width': width }),
-    ...(height !== undefined && { 'data-height': height }),
+    ...(width !== undefined && { width: width }),
+    ...(height !== undefined && { height: height }),
   }).reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
 
   const textX =

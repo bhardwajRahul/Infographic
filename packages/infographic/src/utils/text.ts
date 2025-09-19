@@ -123,7 +123,11 @@ function getTextStyle(attributes: TextAttributes) {
   });
 
   if (fontSize) style.fontSize = `${fontSize}px`;
-  if (lineHeight) style.lineHeight = `${lineHeight}px`;
+  if (lineHeight)
+    style.lineHeight =
+      typeof lineHeight === 'string' && lineHeight.endsWith('px')
+        ? lineHeight
+        : +lineHeight;
   if (letterSpacing) style.letterSpacing = `${letterSpacing}px`;
   if (strokeWidth) style.strokeWidth = `${strokeWidth}px`;
   if (fontFamily) style.fontFamily = encodeFontFamily(fontFamily);
