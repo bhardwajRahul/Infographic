@@ -29,8 +29,9 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "check:test": "tsc --noEmit -p __tests__",
     "ci": "run-s test build lint",
-    "lint": "eslint . --ext .ts,.tsx && tsc --noEmit -p __tests__",
+    "lint": "eslint . --ext .ts,.tsx && npm run check:test",
     "test": "vitest --run --coverage"
   },
   "dependencies": {
