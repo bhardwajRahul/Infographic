@@ -3,33 +3,34 @@ import type { TextProps } from '@antv/infographic-jsx';
 import { Text } from '@antv/infographic-jsx';
 import { getItemKeyFromIndexes } from '../../utils';
 
-export interface ItemDescProps extends TextProps {
+export interface ItemValueProps extends TextProps {
   indexes: number[];
-  lineNumber?: number;
+  value: number;
+  formatter?: (value: number) => string | number;
 }
 
-export const ItemDesc = ({
+export const ItemValue = ({
   indexes,
-  lineNumber = 2,
-  children,
+  value,
+  formatter = (v) => String(v),
   ...props
-}: ItemDescProps) => {
+}: ItemValueProps) => {
   const finalProps: TextProps = {
     width: 100,
     fontSize: 14,
     fill: '#666',
     wordWrap: true,
     lineHeight: 1.4,
-    children,
-    backgroundColor: 'rgba(199, 207, 145, 0.1)',
+    children: formatter(value),
+    'data-value': value,
     ...props,
   };
 
   finalProps.height ??= Math.ceil(
-    lineNumber * +finalProps.lineHeight! * +finalProps.fontSize!,
+    +finalProps.lineHeight! * +finalProps.fontSize!,
   );
 
   return (
-    <Text {...finalProps} id={`item-${getItemKeyFromIndexes(indexes)}-desc`} />
+    <Text {...finalProps} id={`item-${getItemKeyFromIndexes(indexes)}-value`} />
   );
 };

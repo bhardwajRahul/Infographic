@@ -1,6 +1,6 @@
 import type { FragmentProps, JSXElement, JSXNode } from './types';
 
-export const Fragment = Symbol('Fragment');
+export const Fragment = Symbol.for('@antv/infographic-jsx/Fragment');
 
 export function jsx(
   type: string | symbol | ((props?: any) => JSXNode),

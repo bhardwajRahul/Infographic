@@ -1,15 +1,16 @@
 /** @jsxImportSource @antv/infographic-jsx */
 import type { RectProps } from '@antv/infographic-jsx';
 import { Rect } from '@antv/infographic-jsx';
+import { getItemKeyFromIndexes } from '../../utils';
 
 export interface BtnProps extends RectProps {
-  indexKey: string | number;
+  indexes: number[];
 }
 
 export const BtnAdd = (props: BtnProps) => {
-  const { indexKey, ...restProps } = props;
+  const { indexes, ...restProps } = props;
   const defaultProps: RectProps = {
-    id: `btn-add-${indexKey}`,
+    id: `btn-add-${getItemKeyFromIndexes(indexes)}`,
     fill: '#B9EBCA',
     fillOpacity: 0.3,
     width: 20,
@@ -19,9 +20,9 @@ export const BtnAdd = (props: BtnProps) => {
 };
 
 export const BtnRemove = (props: BtnProps) => {
-  const { indexKey, ...restProps } = props;
+  const { indexes, ...restProps } = props;
   const defaultProps: RectProps = {
-    id: `btn-remove-${indexKey}`,
+    id: `btn-remove-${getItemKeyFromIndexes(indexes)}`,
     fill: '#F9C0C0',
     fillOpacity: 0.3,
     width: 20,

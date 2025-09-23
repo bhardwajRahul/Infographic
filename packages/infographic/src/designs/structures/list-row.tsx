@@ -6,65 +6,62 @@ import { FlexLayout } from '../layouts';
 import { registerStructure } from './registry';
 import type { BaseStructureProps } from './types';
 
-export interface ListColumnProps extends BaseStructureProps {
+export interface ListRowProps extends BaseStructureProps {
   gap?: number;
 }
 
-export const ListColumn: ComponentType<ListColumnProps> = (props) => {
+export const ListRow: ComponentType<ListRowProps> = (props) => {
   const { Title, Item, data, gap = 20 } = props;
   const { title, desc, items = [] } = data;
 
-  let width = 720;
-
   const titleContent = Title ? <Title title={title} desc={desc} /> : null;
-  if (Title) {
-    const titleBounds = getElementBounds(titleContent);
-    width = titleBounds.width * 0.8;
-  }
 
   const btnBounds = getElementBounds(<BtnAdd indexes={[0]} />);
   const itemBounds = getElementBounds(
-    <Item indexes={[0]} data={data} datum={items[0]} />,
+    <Item indexes={[0]} data={data} datum={items[0]} positionH="center" />,
   );
 
   const btnElements: JSXElement[] = [];
   const itemElements: JSXElement[] = [];
 
-  const btnAddX = (width - btnBounds.width) / 2;
+  const btnY = itemBounds.height;
+
   items.forEach((item, index) => {
-    const itemY = (itemBounds.height + gap) * index;
+    const itemX = (itemBounds.width + gap) * index;
     const indexes = [index];
     itemElements.push(
       <Item
         indexes={indexes}
         datum={item}
         data={data}
-        y={itemY}
-        width={width}
-        positionV="center"
+        x={itemX}
+        positionH="center"
       />,
     );
 
     btnElements.push(
       <BtnRemove
         indexes={indexes}
-        x={-btnBounds.width - 10}
-        y={itemY + (itemBounds.height - btnBounds.height) / 2}
+        x={itemX + (itemBounds.width - btnBounds.width) / 2}
+        y={btnY}
       />,
     );
 
-    const btnAddY =
-      index === 0 ? -btnBounds.height : itemY - gap / 2 - btnBounds.height / 2;
+    const btnAddX =
+      index === 0
+        ? -(gap + btnBounds.width) / 2
+        : itemX - (gap + btnBounds.width) / 2;
 
-    btnElements.push(<BtnAdd indexes={indexes} x={btnAddX} y={btnAddY} />);
+    btnElements.push(<BtnAdd indexes={indexes} x={btnAddX} y={btnY} />);
   });
 
   if (items.length > 0) {
-    const lastItemY = (itemBounds.height + gap) * (items.length - 1);
-    const extraAddBtnY = lastItemY + itemBounds.height;
+    const lastItemX = (itemBounds.width + gap) * (items.length - 1);
+    const extraAddBtnX =
+      lastItemX + itemBounds.width + (gap - btnBounds.width) / 2;
 
     btnElements.push(
-      <BtnAdd indexes={[items.length]} x={btnAddX} y={extraAddBtnY} />,
+      <BtnAdd indexes={[items.length]} x={extraAddBtnX} y={btnY} />,
     );
   }
 
@@ -84,4 +81,4 @@ export const ListColumn: ComponentType<ListColumnProps> = (props) => {
   );
 };
 
-registerStructure('list-column', { component: ListColumn });
+registerStructure('list-row', { component: ListRow });

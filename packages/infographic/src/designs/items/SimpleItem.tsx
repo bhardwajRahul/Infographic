@@ -2,6 +2,7 @@
 import { ComponentType, getElementBounds, Group } from '@antv/infographic-jsx';
 import { ItemDesc, ItemIcon, ItemLabel } from '../components';
 import { FlexLayout } from '../layouts';
+import { registerItem } from './registry';
 import type { BaseItemProps } from './types';
 import { getItemProps } from './utils';
 
@@ -21,6 +22,7 @@ export const SimpleItem: ComponentType<SimpleItemProps> = (props) => {
       iconSize = 30,
       positionH = 'normal',
       positionV = 'normal',
+      themeColors,
     },
     restProps,
   ] = getItemProps(props, ['width', 'gap', 'iconSize']);
@@ -43,12 +45,19 @@ export const SimpleItem: ComponentType<SimpleItemProps> = (props) => {
       width={width}
       alignHorizontal="center"
       alignVertical="center"
+      fill={themeColors.colorText}
     >
       {label}
     </ItemLabel>
   );
   const labelBounds = getElementBounds(labelContent);
-  const iconContent = <ItemIcon indexes={indexes} size={iconSize} />;
+  const iconContent = (
+    <ItemIcon
+      indexes={indexes}
+      size={iconSize}
+      fill={themeColors.colorTextSecondary}
+    />
+  );
 
   if (!icon) {
     return (
@@ -58,6 +67,7 @@ export const SimpleItem: ComponentType<SimpleItemProps> = (props) => {
           width={width}
           alignHorizontal={textAlign}
           alignVertical="center"
+          fill={themeColors.colorText}
         >
           {label}
         </ItemLabel>
@@ -67,6 +77,7 @@ export const SimpleItem: ComponentType<SimpleItemProps> = (props) => {
           y={labelBounds.height + gap}
           alignHorizontal={textAlign}
           alignVertical={getDescVerticalAlign(positionV, false)}
+          fill={themeColors.colorTextSecondary}
         >
           {desc}
         </ItemDesc>
@@ -92,6 +103,7 @@ export const SimpleItem: ComponentType<SimpleItemProps> = (props) => {
                 y={labelBounds.height + gap}
                 alignHorizontal="center"
                 alignVertical="bottom"
+                fill={themeColors.colorTextSecondary}
               >
                 {desc}
               </ItemDesc>
@@ -109,6 +121,7 @@ export const SimpleItem: ComponentType<SimpleItemProps> = (props) => {
                 y={labelBounds.height + gap}
                 alignHorizontal="center"
                 alignVertical="top"
+                fill={themeColors.colorTextSecondary}
               >
                 {desc}
               </ItemDesc>
@@ -137,6 +150,7 @@ export const SimpleItem: ComponentType<SimpleItemProps> = (props) => {
               width={textWidth}
               alignHorizontal="right"
               alignVertical="center"
+              fill={themeColors.colorText}
             >
               {label}
             </ItemLabel>
@@ -146,6 +160,7 @@ export const SimpleItem: ComponentType<SimpleItemProps> = (props) => {
               y={labelBounds.height + gap}
               alignHorizontal="right"
               alignVertical={getDescVerticalAlign(positionV, true)}
+              fill={themeColors.colorTextSecondary}
             >
               {desc}
             </ItemDesc>
@@ -161,6 +176,7 @@ export const SimpleItem: ComponentType<SimpleItemProps> = (props) => {
               width={textWidth}
               alignHorizontal="left"
               alignVertical="center"
+              fill={themeColors.colorText}
             >
               {label}
             </ItemLabel>
@@ -170,6 +186,7 @@ export const SimpleItem: ComponentType<SimpleItemProps> = (props) => {
               y={labelBounds.height + gap}
               alignHorizontal="left"
               alignVertical={getDescVerticalAlign(positionV, true)}
+              fill={themeColors.colorTextSecondary}
             >
               {desc}
             </ItemDesc>
@@ -193,3 +210,5 @@ export const SimpleItem: ComponentType<SimpleItemProps> = (props) => {
     return 'center';
   }
 };
+
+registerItem('simple', { component: SimpleItem });

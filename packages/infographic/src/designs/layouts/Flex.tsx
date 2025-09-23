@@ -10,7 +10,7 @@ import {
   type JSXElement,
 } from '@antv/infographic-jsx';
 
-interface FlexLayoutProps extends GroupProps {
+export interface FlexLayoutProps extends GroupProps {
   flexDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
   justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between';
   alignItems?: 'flex-start' | 'flex-end' | 'center';
