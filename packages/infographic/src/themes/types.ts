@@ -54,4 +54,6 @@ export interface ThemeColors {
   colorBg: string;
   /** 卡片背景色 */
   colorBgElevated: string;
+  /** 是否为暗色模式 */
+  isDarkMode: boolean;
 }
