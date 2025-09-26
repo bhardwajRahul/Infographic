@@ -119,7 +119,7 @@ export const HierarchyTree: ComponentType<HierarchyTreeProps> = (props) => {
         data={data}
         x={nodeX}
         y={nodeY}
-        positionH="left"
+        positionH="center"
       />,
     );
 

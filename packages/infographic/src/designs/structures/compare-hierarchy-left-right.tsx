@@ -63,7 +63,13 @@ export const CompareHierarchyLeftRight: ComponentType<
       themeColors={{} as any}
     />
   );
-  const itemContent = <Item indexes={[0]} data={data} datum={items[0]} />;
+  const itemContent = (
+    <Item
+      indexes={[0, 0]}
+      data={data}
+      datum={items[0]?.children?.[0] || items[2]}
+    />
+  );
 
   const rootItemBounds = getElementBounds(rootItemContent);
   const itemBounds = getElementBounds(itemContent);

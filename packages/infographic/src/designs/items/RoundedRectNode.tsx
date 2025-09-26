@@ -19,7 +19,7 @@ export const RoundedRectNode: ComponentType<RoundedRectNodeProps> = (props) => {
       themeColors,
       width = 300,
       height = 40,
-      padding = 16,
+      padding = 4,
       positionH = 'normal',
     },
     restProps,
