@@ -9,3 +9,7 @@ export function registerTemplate(type: string, template: TemplateOptions) {
 export function getTemplate(type: string): TemplateOptions | undefined {
   return TEMPLATE_REGISTRY.get(type);
 }
+
+export function getTemplates(): string[] {
+  return Array.from(TEMPLATE_REGISTRY.keys());
+}
