@@ -15,6 +15,9 @@ export class Infographic {
     this.parsedOptions = parseOptions(this.options);
   }
 
+  /**
+   * Render the infographic into the container
+   */
   render() {
     const { container } = this.parsedOptions;
     this.setView();
@@ -25,7 +28,10 @@ export class Infographic {
     container.replaceChildren(infographic);
   }
 
-  private compose(): SVGSVGElement {
+  /**
+   * Compose the SVG template
+   */
+  compose(): SVGSVGElement {
     const { design, data } = this.parsedOptions;
     const { title, item, items, structure } = design;
     const { component: Structure, props: structureProps } = structure;
@@ -43,8 +49,6 @@ export class Infographic {
         {...structureProps}
       />,
     );
-
-    Object.assign(globalThis, { __svg__: svg });
 
     const template = parseSVG(svg);
     if (!template) {

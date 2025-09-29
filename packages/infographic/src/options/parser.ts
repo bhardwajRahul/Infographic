@@ -27,9 +27,8 @@ export function parseOptions(
 
   const parsedContainer =
     typeof container === 'string'
-      ? document.querySelector(container)
+      ? document.querySelector(container) || document.createElement('div')
       : container;
-  if (!parsedContainer) throw new Error('Container not found');
 
   const templateOptions: TemplateOptions = template
     ? getTemplate(template) || {}
