@@ -129,7 +129,7 @@ export interface ThemeColors {
     // 除非需要特殊样式，否则不建议设置以下属性
     // fontSize={14}
     // alignHorizontal="center"
-    // alignVertical="middle"
+    // alignVertical="center"
     // fill={themeColors.colorText}
   >
     {datum.label}
@@ -462,7 +462,7 @@ const barHeight = (value / maxValue) * availableHeight;
 
 ## 常见问题和最佳实践
 
-### 1. 数值处理问题
+### 数值处理问题
 
 ❌ **错误做法**：
 
@@ -479,21 +479,7 @@ const displayValue = value ?? 0; // 用于显示
 {value !== undefined && <ItemValue value={displayValue} />} // 条件渲染正确
 ```
 
-### 2. Text 组件使用
-
-❌ **错误做法**：
-
-```typescript
-<Text text="内容" alignVertical="middle" />
-```
-
-✅ **正确做法**：
-
-```typescript
-<Text alignVertical="center">内容</Text>
-```
-
-### 3. 渐变 ID 生成
+### 渐变 ID 生成
 
 ❌ **错误做法**：
 
@@ -507,7 +493,7 @@ const gradientId = getItemId(indexes, 'def', 'gradient'); // 基于索引，无�
 const gradientId = `${themeColors.colorPrimary}-component-name`; // 基于颜色，可复用
 ```
 
-### 4. tinycolor 使用
+### tinycolor 使用
 
 ❌ **错误做法**：
 
@@ -521,7 +507,7 @@ tinycolor.darken(color, 20); // 静态方法不存在
 tinycolor(color).darken(20).toHexString(); // 实例方法
 ```
 
-### 5. 动态布局示例
+### 动态布局示例
 
 ```typescript
 // 描述位置根据是否有数值动态调整

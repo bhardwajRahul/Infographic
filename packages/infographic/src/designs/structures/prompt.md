@@ -133,7 +133,7 @@ export interface BaseItemProps {
     y={0}
     fontSize={14}
     alignHorizontal="center" // 'left' | 'center' | 'right'
-    alignVertical="middle" // 'top' | 'middle' | 'bottom'
+    alignVertical="middle" // 'top' | 'center' | 'bottom'
   >
   Text Content
   </Text>
