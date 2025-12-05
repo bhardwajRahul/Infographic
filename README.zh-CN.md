@@ -15,8 +15,7 @@
 
 </div>
 
-**AntV Infographic** 是 AntV 推出的新一代**声明式信息图可视化引擎**。
-通过统一的语法与组件体系，你可以将结构化数据以优雅、灵活的方式渲染为高质量的信息图，让信息表达更高效，让数据叙事更简单。
+**AntV Infographic** 是 AntV 推出的新一代**声明式信息图可视化引擎**。通过统一的语法与组件体系，你可以将结构化数据以优雅、灵活的方式渲染为高质量的信息图，让信息表达更高效，让数据叙事更简单。
 
 <div align="center">
 
@@ -30,6 +29,7 @@
 
 - 📦 **开箱即用**：内置 100+ 信息图模板、数据项组件与布局，快速构建专业信息图
 - 🎨 **主题系统**：支持手绘（rough）、渐变、图案、多套预设主题，并支持深度自定义
+- 🧑🏻‍💻 **内置编辑器**：内置信息图的编辑器，让 AI 生成之后可以二次编辑微调
 - 🧩 **组件化架构**：数据项、结构布局、渲染单元完全组件化，可灵活组合与扩展
 - 🎯 **声明式配置**：简单清晰的配置方式，更适合 AI 生成、机器理解与自动化流程
 - 🤖 **AI 友好**：完善的 JSON Schema 定义，使大模型可自动生成可用配置
@@ -58,6 +58,8 @@ const infographic = new Infographic({
       { label: '步骤 3', desc: '完成' },
     ],
   },
+  // 开启内置编辑器
+  editable: true,
 });
 
 infographic.render();
@@ -65,9 +67,29 @@ infographic.render();
 
 然后你可以在容器中看到信息图渲染出来。
 
-![](https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*uvj8Qb26F1MAAAAARAAAAAgAemJ7AQ/fmt.webp)
+<img src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*uvj8Qb26F1MAAAAARAAAAAgAemJ7AQ/fmt.webp" width="480" alt="AntV Infographic DEMO">
 
 更多示例请参考[文档站点](https://infographic.antv.vision/examples)。
+
+## 🗂 配置
+
+实例化 `Infographic` 类时所需传入的 `InfographicOptions` 配置项，具体配置如下：
+
+| 属性        | 类型                    | 必填   | 说明                                   | 引用                                             |
+| ----------- | ----------------------- | ------ | -------------------------------------- | ------------------------------------------------ |
+| container   | `string \| HTMLElement` | 否     | 容器，可以是选择器或者 HTMLElement         | -                                                    |
+| width       | `number \| string`      | 否     | 宽度，支持数字（像素值）或者百分比形式        | -                                                       |
+| height      | `number \| string`      | 否     | 高度，支持数字（像素值）或者百分比形式        | -                                                        |
+| padding     | `Padding`               | 否     | 容器内边距                             | [Padding](/reference/infographic-types#padding)     |
+| template    | `string`                | 否     | 模板                                   | -                                                |
+| design      | `DesignOptions`         | 否     | 设计                                   | [DesignOptions](/reference/infographic-types#design-options) |
+| data        | `Data`                  | **是** | 数据                                   | [Data](/reference/infographic-types#data)                    |
+| theme       | `string`                | 否     | 主题                                   | -                                                |
+| themeConfig | `ThemeConfig`           | 否     | 额外主题配置                           | [ThemeConfig](/reference/infographic-types#theme-config)     |
+| svg         | `SVGOptions`            | 否     | SVG 容器上的配置                       | [SVGOptions](/reference/infographic-types#svg-options)       |
+| editable    | `boolean`               | 否     | 是否开启编辑能力                        | -                                                     |
+
+更多配置项请查看 [配置项](https://infographic.antv.vision/reference/infographic-options)。
 
 ## 💬 社区与交流
 

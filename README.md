@@ -30,9 +30,9 @@ With unified syntax and component architecture, you can render structured data i
 
 - 📦 **Ready to use**: 100+ built-in templates, data-item components, and layouts to assemble infographics in minutes
 - 🎨 **Themeable**: Hand-drawn (rough), gradients, patterns, multiple presets, and deep customization
+- 🧑🏻‍💻 **Built-in editor**: built-in editor for AI-generated infographics, allowing for further customization and refinement
 - 🧩 **Composable**: Structures, items, and render units are fully componentized for flexible extension
 - 🎯 **Declarative Configuration**: Simple and clear configuration approach, ideal for AI generation, machine understanding, and automated workflows
-
 - 🤖 **AI-friendly**: Declarative config with JSON Schema, ideal for AI generation and automated workflows
 - 📐 **High-quality SVG**: Default SVG output for crisp visuals and easy editing/export
 
@@ -59,6 +59,8 @@ const infographic = new Infographic({
       { label: 'Step 3', desc: 'Complete' },
     ],
   },
+  // Enable editing with the built-in editor
+  editable: true,
 });
 
 infographic.render();
@@ -66,9 +68,30 @@ infographic.render();
 
 Render the infographic in the target container.
 
-![](https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*uvj8Qb26F1MAAAAARAAAAAgAemJ7AQ/fmt.webp)
+<img src="https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*uvj8Qb26F1MAAAAARAAAAAgAemJ7AQ/fmt.webp" width="480" alt="AntV Infographic DEMO">
 
 For more examples, please refer to the [documentation](https://infographic.antv.vision/examples) site.
+
+## 🗂 Configuration
+
+The `InfographicOptions` configuration item required when instantiating the Infographic class, see the information graph syntax for more information.
+
+| Attribute   | Type                    | Required   | Description                           | Reference                                        |
+| ----------- | ----------------------- | ---------- | ------------------------------------- | ------------------------------------------------ |
+| container   | `string \| HTMLElement` | N     | Container, can be selector or HTMLElement. | -                                                                                           |
+| width       | `number \| string`      | N     | Width, support pixel value or percentage.  | -                                                                                           |
+| height      | `number \| string`      | N     | Height, support pixel value or percentage. | -                                                                                           |
+| padding     | `Padding`               | N     | Padding for container                      | [Padding](https://infographic.antv.vision/reference/infographic-types#padding)              |
+| template    | `string`                | N     | Template name                              | -                                                                                           |
+| design      | `DesignOptions`         | N     | Design options                             | [DesignOptions](https://infographic.antv.vision/reference/infographic-types#design-options) |
+| data        | `Data`                  | **Y** | Data for Infographic                       | [Data](https://infographic.antv.vision/reference/infographic-types#data)                    |
+| theme       | `string`                | N     | Theme name                                 | -                                                                                           |
+| themeConfig | `ThemeConfig`           | N     | Theme configure options                    | [ThemeConfig](https://infographic.antv.vision/reference/infographic-types#theme-config)     |
+| svg         | `SVGOptions`            | N     | Options for SVG container                  | [SVGOptions](https://infographic.antv.vision/reference/infographic-types#svg-options)       |
+| editable    | `boolean`               | N     | Whethe editable?                           | -                                                                                           |
+
+For more details, please refer to the [Configuration](https://infographic.antv.vision/reference/infographic-options) section.
+
 
 ## 💬 Community & Communication
 
